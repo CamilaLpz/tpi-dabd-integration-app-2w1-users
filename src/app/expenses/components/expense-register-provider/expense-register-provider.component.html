@@ -1,96 +1,10 @@
-<div
-  class="container-fluid d-flex flex-column justify-content-center align-items-center"
->
-  <div
-    class="modal fade"
-    id="infoModal"
-    tabindex="-1"
-    aria-labelledby="infoModalLabel"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Información sobre Registro de Proveedores</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <p>
-            Bienvenido al sistema de registro de proveedores. Esta sección te
-            permite gestionar la información de los proveedores, asegurando que
-            los datos sean correctos y completos antes de registrar o modificar
-            un proveedor.
-          </p>
-          <ul>
-            <li>
-              <strong>Campos a Completar:</strong>
-              <ul>
-                <li>
-                  <em>Nombre:</em> Nombre del proveedor. Este campo es
-                  obligatorio.
-                </li>
-                <li>
-                  <em>CUIT:</em> Número de CUIT del proveedor. Este campo es
-                  obligatorio.
-                </li>
-                <li>
-                  <em>Teléfono:</em> Número de contacto del proveedor. Se debe
-                  ingresar un número válido.
-                </li>
-                <li>
-                  <em>Email:</em> Correo electrónico del proveedor. Este campo
-                  es obligatorio y debe ser único.
-                </li>
-                <li>
-                  <em>Tipo de Proveedor:</em> Selecciona el tipo de proveedor
-                  (Ejemplo: Otro, Servicio externo, Proveedor de Inventario).
-                </li>
-                <li>
-                  <em>Dirección:</em> Dirección física del proveedor. Este campo
-                  es obligatorio.
-                </li>
-              </ul>
-            </li>
-            <li>
-              <strong>Acciones Disponibles:</strong>
-              <ul>
-                <li>
-                  <em>Registrar:</em> Guarda la información del proveedor en el
-                  sistema.
-                </li>
-                <li><em>Cancelar:</em> Regresa sin guardar cambios.</li>
-              </ul>
-            </li>
-          </ul>
-          <p><strong>Notas importantes:</strong></p>
-          <ul>
-            <li>
-              Los campos "Nombre", "CUIT", "Email", y "Dirección" son
-              obligatorios para completar el registro.
-            </li>
-            <li>El CUIT y el nombre del proveedor deben ser únicos.</li>
-            <li>
-              Verifica que el número de teléfono y el email sean válidos antes
-              de registrar un proveedor.
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="expenseModalLabel">Registrar Proveedor</h5>
+    <button type="button" class="btn-close" aria-label="Close" (click)="clearInputs()"></button>
   </div>
-
-  <form
-    [formGroup]="proveedorForm"
-    (ngSubmit)="onSubmit()"
-    class="mt-5 bg-white shadow p-5 mx-2 w-100"
-    style="max-width: 1200px"
-    id="pantalla"
-  >
+  <div class="modal-body">
+    <form [formGroup]="proveedorForm">
     <div class="row">
       <div class="col-md-6">
         <div class="mb-3">
@@ -209,12 +123,11 @@
       </div>
     </div>
 
-    <div class="row" >
+    <div class="row">
       <div class="col-md-6">
         <div class="mb-3">
           <label class="form-label">Tipo Proveedor</label>
           <select
-            id="combo"
             formControlName="supplierType"
             class="form-select"
             [ngClass]="{
@@ -259,26 +172,10 @@
         </div>
       </div>
     </div>
-
-    <div class="row mt-3">
-      <div class="row justify-content-end">
-        <div class="col-auto">
-          <button type="button" class="btn btn-secondary" (click)="goBack()">
-            Cancelar
-          </button>
-        </div>
-        <div class="col-auto">
-          <button
-            id="registrar"
-            type="submit"
-            class="btn btn-success"
-            style="width: 100%"
-            [disabled]="proveedorForm.invalid"
-          >
-            Registrar
-          </button>
-        </div>
-      </div>
-    </div>
   </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success"  (click)="save()" [disabled]="proveedorForm.invalid">Registrar</button>
+    <button type="button" class="btn btn-secondary"  (click)="clearInputs()">Cancelar</button>
+  </div>
 </div>
